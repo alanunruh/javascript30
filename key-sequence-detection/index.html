@@ -1,12 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>Key Detection</title>
   <script type="text/javascript" src="http://www.cornify.com/js/cornify.js"></script>
 </head>
+
 <body>
-<script>
-</script>
+	<h1>Type "Hello" over and over to see what happens.</h1>
+
+	<script>
+		// Store the pressed keys into an array
+		const pressed = [];
+		const secretCode = 'hello';
+
+		window.addEventListener('keyup', (e) => {
+			// Log the key pressed
+			console.log(e.key);
+			// Push keys into an array
+			pressed.push(e.key);
+			// Limit the length of the array to find the secretCode
+			pressed.splice(-secretCode.length - 1, pressed.length - secretCode.length);
+				if (pressed.join('').includes(secretCode)) {
+					console.log('DING DING!');
+					cornify_add();
+				}
+			// Log the array of keys
+			console.log(pressed);
+		})
+	</script>
+
 </body>
+
 </html>
